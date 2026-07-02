@@ -26,19 +26,16 @@ public class TareaController {
         this.service = service;
     }
 
-    // Listar todas las tareas
     @GetMapping
     public List<Tarea> listarTodas() {
         return service.listarTodas();
     }
 
-    // Buscar por id
     @GetMapping("/{id}")
     public Tarea buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
-    // Crear tarea
     @PostMapping
     public ResponseEntity<ApiResponse> crear(@Valid @RequestBody TareaDTO dto) {
 
@@ -52,7 +49,6 @@ public class TareaController {
         return new ResponseEntity<>(respuesta, HttpStatus.CREATED);
     }
 
-    // Actualizar tarea
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse> actualizar(
             @PathVariable Long id,
@@ -68,7 +64,6 @@ public class TareaController {
         return ResponseEntity.ok(respuesta);
     }
 
-    // Eliminar tarea
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> eliminar(@PathVariable Long id) {
 
@@ -82,7 +77,6 @@ public class TareaController {
         return ResponseEntity.ok(respuesta);
     }
 
-    // Cambiar estado
     @PatchMapping("/{id}/estado")
     public ResponseEntity<ApiResponse> cambiarEstado(
             @PathVariable Long id,
@@ -98,19 +92,16 @@ public class TareaController {
         return ResponseEntity.ok(respuesta);
     }
 
-    // Filtrar por estado
     @GetMapping("/estado/{estado}")
     public List<Tarea> buscarPorEstado(@PathVariable EstadoTarea estado) {
         return service.buscarPorEstado(estado);
     }
 
-    // Filtrar por prioridad
     @GetMapping("/prioridad/{prioridad}")
     public List<Tarea> buscarPorPrioridad(@PathVariable PrioridadTarea prioridad) {
         return service.buscarPorPrioridad(prioridad);
     }
 
-    // Buscar por título
     @GetMapping("/buscar")
     public List<Tarea> buscarPorTitulo(@RequestParam String titulo) {
         return service.buscarPorTitulo(titulo);
